@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import './NewTasksForm.css';
-import { ICreateTask } from '../../interface/taskInterface';
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { createTask } from '../../slices/tasksSlices';
 
-export default function NewTasksForm({ createTask }: ICreateTask): JSX.Element {
-    const [valueForm, setValueForm] = useState<string>();
-
-    const handleChangeForm = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setValueForm(evt.target.value);
-    };
+export default function NewTasksForm(): JSX.Element {
+    const [valueForm, setValueForm] = useState<string>('');
+    const dispatch = useDispatch();
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         if (typeof valueForm !== 'undefined' && valueForm.trim() !== '') {
-            createTask(valueForm);
+            const newTask = {
+                idTask: uuidv4(),
+                task: valueForm,
+                active: true,
+            };
+            dispatch(createTask(newTask));
             setValueForm('');
         }
     };
@@ -28,7 +32,7 @@ export default function NewTasksForm({ createTask }: ICreateTask): JSX.Element {
                     name="valueForm"
                     value={valueForm}
                     placeholder="What needs to be done?"
-                    onChange={(evt) => handleChangeForm(evt)}
+                    onChange={(evt) => setValueForm(evt.target.value)}
                     autoFocus
                     required
                 />

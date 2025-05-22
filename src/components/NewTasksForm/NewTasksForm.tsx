@@ -24,10 +24,10 @@ export default function NewTasksForm(): JSX.Element {
     return (
         <header className="header">
             <h1>todos</h1>
-            <form onSubmit={(evt) => handleSubmit(evt)} className="new-todo-form">
+            <form onSubmit={(evt) => handleSubmit(evt)} className="new__todo__form">
                 <button type="submit" hidden aria-hidden />
                 <input
-                    className="new-todo"
+                    className="new__todo"
                     type="text"
                     name="valueForm"
                     value={valueForm}

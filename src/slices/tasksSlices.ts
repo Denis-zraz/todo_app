@@ -22,8 +22,19 @@ const TasksSlice = createSlice({
         createTask(state, { payload }) {
             state.push(payload);
         },
+        updateTask(state, { payload }) {
+            const { idTask, text } = payload;
+            return state.map((elem) => (elem.idTask === idTask ? { ...elem, task: text } : { ...elem }));
+        },
+        deletTask(state, { payload }) {
+            return state.filter((item) => item.idTask !== payload);
+        },
+        toggleChecked(state, { payload }) {
+            const st = state.map((elem) => (elem.idTask === payload ? { ...elem, active: !elem.active } : { ...elem }));
+            return st;
+        },
     },
 });
 
-export const { createTask } = TasksSlice.actions;
+export const { createTask, updateTask, deletTask, toggleChecked } = TasksSlice.actions;
 export default TasksSlice.reducer;

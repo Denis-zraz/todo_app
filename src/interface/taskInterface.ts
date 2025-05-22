@@ -23,4 +23,11 @@ export interface TaskProps {
     updateTask: (idTask: string, text: string) => void;
 }
 
-// export interface I
+export interface ITaskProps {
+    item: ITask;
+}
+
+export interface IChangeProps {
+    changeClassName: () => void;
+    data: ITask;
+}

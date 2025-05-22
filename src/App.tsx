@@ -11,6 +11,7 @@ function App(): JSX.Element {
 
     useEffect(() => {
         setfilterTasks(tasks);
+        // console.log(tasks);
     }, [tasks]);
 
     return (

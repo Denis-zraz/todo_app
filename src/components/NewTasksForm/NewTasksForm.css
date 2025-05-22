@@ -1,5 +1,5 @@
-.new-todo,
-.new-todo-form .edit {
+.new__todo,
+.new__todo__form .edit {
     position: relative;
     margin: 0;
     width: 100%;
@@ -9,33 +9,28 @@
     line-height: 1.4em;
     color: inherit;
     padding: 6px;
-    /* border: 1px solid #999; */
-    /* box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2); */
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.new-todo-form {
+.new__todo__form {
     display: flex;
     margin-bottom: 0;
 }
 
-.new-todo {
+.new__todo {
     width: 100%;
     padding: 16px 16px 16px 53px;
     border: none;
     background: rgba(0, 0, 0, 0.003);
 }
 
-.new-todo::placeholder {
+.new__todo::placeholder {
     color: #fdfafa;
 }
-
-/* .new-todo-form {
-    width: 16%;
-    padding-left: 16px;
-} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

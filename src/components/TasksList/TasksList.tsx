@@ -7,7 +7,7 @@ export default function TasksList({ data }: ITaskListProps) {
         <ul className="todo__list">
             {data &&
                 data.map((item) => {
-                    return <Task key={item.idTask} />;
+                    return <Task key={item.idTask} item={item} />;
                 })}
         </ul>
     );

@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    env: { browser: true, es2020: true },
+    env: { browser: true, es2020: true, node: 'current' },
     extends: [
         'airbnb',
         // 'eslint:recommended',
@@ -26,6 +26,7 @@ module.exports = {
     plugins: ['@typescript-eslint', 'react-refresh', 'react', 'import', 'jsx-a11y'],
     rules: {
         'import/no-unresolved': [2, { caseSensitive: false }],
+        'react/jsx-no-target-blank': 'off',
         'react/react-in-jsx-scope': 'off',
         'import/extensions': [
             'error',
@@ -40,5 +41,6 @@ module.exports = {
         'jsx-a11y/no-autofocus': 'off',
         'no-alert': 'off',
         'react/require-default-props': 0,
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     },
 };

@@ -31,3 +31,8 @@ export interface IChangeProps {
     changeClassName: () => void;
     data: ITask;
 }
+
+export interface IFooterProps {
+    activeTasks: number;
+    updateStatus: (status: string) => void;
+}

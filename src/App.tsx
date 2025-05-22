@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './App.css';
+import NewTasksForm from './components/NewTasksForm';
+import { ITask } from './interface/taskInterface';
+import dataTasks from './defaultData';
+import TasksList from './components/TasksList';
 
-function App() {
-  const [count, setCount] = useState(0)
+function App(): JSX.Element {
+    const [tasks, setTasks] = useState<ITask[]>(dataTasks);
+    const [filterTasks, setfilterTasks] = useState(tasks);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    useEffect(() => {
+        setfilterTasks(tasks);
+    }, [tasks]);
+
+    const createTask = (valueForm: string) => {
+        setTasks((prevTasks) => [
+            ...prevTasks,
+            {
+                idTask: uuidv4(),
+                task: valueForm,
+                active: true,
+            },
+        ]);
+    };
+
+    return (
+        <section className="todoapp">
+            <NewTasksForm createTask={createTask} />
+            <section className="main">
+                <TasksList data={filterTasks} />
+            </section>
+        </section>
+    );
 }
 
-export default App
+export default App;

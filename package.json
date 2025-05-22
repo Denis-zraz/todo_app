@@ -16,6 +16,7 @@
     "@types/uuid": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.89.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -45,5 +46,13 @@
     "prettier": "^3.5.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --quiet --fix"
+    ],
+    "src/**/*.{json,css,scss,html}": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }

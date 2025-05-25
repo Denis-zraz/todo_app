@@ -37,3 +37,32 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.errors {
+    display: block;
+    position: relative;
+    color: red;
+    padding-left: 53px;
+}
+
+.errors-border {
+    position: relative;
+
+    margin: 0;
+    padding: 16px 16px 16px 53px;
+    width: 100%;
+
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+
+    line-height: 1.4em;
+    color: inherit;
+
+    border: 1px solid rgb(243, 81, 81);
+    box-shadow: inset 0 0 3px 0 rgba(244, 7, 7, 0.993);
+
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

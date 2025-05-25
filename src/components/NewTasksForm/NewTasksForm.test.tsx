@@ -1,3 +1,45 @@
-import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import * as React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import userEvent from '@testing-library/user-event';
+import store from '../../store/store';
+import NewTasksForm from './NewTasksForm.tsx';
 
-import NewTasksForm from './NewTasksForm';
+describe('Testing sum', () => {
+    test('title is in the document', () => {
+        render(
+            <Provider store={store}>
+                <NewTasksForm />
+            </Provider>,
+        );
+        const title = screen.getByText(/todos/i);
+        expect(title).toBeInTheDocument();
+    });
+
+    it('input', async () => {
+        render(
+            <Provider store={store}>
+                <NewTasksForm />
+            </Provider>,
+        );
+        const inputElement = screen.getByTestId('valueForm');
+        await userEvent.type(inputElement, 'сделать дело');
+
+        expect(inputElement).toHaveValue('сделать дело');
+    });
+
+    test('error', () => {
+        render(
+            <Provider store={store}>
+                <NewTasksForm />
+            </Provider>,
+        );
+
+        const submitButton = screen.getByTestId('button');
+        fireEvent.click(submitButton);
+
+        const errorMessage = screen.queryByText(/\*Это поле обязательно к заполнению/i);
+        expect(errorMessage).toBeInTheDocument();
+    });
+});

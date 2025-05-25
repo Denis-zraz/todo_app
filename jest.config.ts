@@ -1,16 +1,21 @@
-/** @type { import('jest').Config} */
+import type { Config } from 'jest';
 
-const config = {
+const config: Config = {
+    preset: 'ts-jest',
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.{js, jsx, ts, tsx}'],
     coverageDirectory: 'coverage',
-    testEnvironment: 'jsdom',
-    // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    testEnvironment: 'jest-environment-jsdom',
+    moduleDirectories: ['node_modules'],
+    roots: ['src'],
     transform: {
-        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest" 
-    // process `*.tsx` files with `ts-jest`
+        '^.+\\.[jt]sx?$': ['babel-jest', { presets: ['@babel/preset-env'] }],
     },
-    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx']
-}
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    moduleNameMapper: {
+        '\\.(css|less|scss)$': 'identity-obj-proxy',
+    },
+    verbose: true,
+};
 
 export default config;

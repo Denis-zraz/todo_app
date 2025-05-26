@@ -13,6 +13,7 @@ export default function Footer({ activeTasks, updateStatus }: IFooterProps) {
     const dispatch = useDispatch();
     const { all, itemActive, itemCompleted } = classActive;
 
+    // делаем кнопку активной
     const handleChangeStatus = (evt: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const valueStatus = evt.currentTarget.id;
         if (valueStatus === 'All') {

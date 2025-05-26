@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
-import * as React from 'react';
+// @ts-expect-error - для тестов необходим импорт React, но он не используется
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
@@ -7,6 +8,7 @@ import store from '../../store/store';
 import NewTasksForm from './NewTasksForm.tsx';
 
 describe('Testing sum', () => {
+    // тестируем наличие заголовка в компоненте
     test('title is in the document', () => {
         render(
             <Provider store={store}>
@@ -17,6 +19,7 @@ describe('Testing sum', () => {
         expect(title).toBeInTheDocument();
     });
 
+    // имитируем действие пользователя по вводу данных
     it('input', async () => {
         render(
             <Provider store={store}>
@@ -29,6 +32,7 @@ describe('Testing sum', () => {
         expect(inputElement).toHaveValue('сделать дело');
     });
 
+    // тестируем вывод сообщения об ошибке при вводе пустого todo
     test('error', () => {
         render(
             <Provider store={store}>

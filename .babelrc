@@ -1,0 +1,7 @@
+{
+    "presets": [
+        ["@babel/preset-env", { "targets": { "esmodules": true, "node": "current" } }],
+        ["@babel/preset-typescript", { "runetime": "automatic" }],
+        ["@babel/preset-react", { "runetime": "automatic" }]
+    ]
+}

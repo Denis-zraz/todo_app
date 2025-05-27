@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# TODO APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Реализовано ToDo-приложение, позволяющее управлять текущим списком дел\
+в интерфейсе которого создано:\
+1. Поле для ввода новой задачи
+2. Списки всех задач, невыполненных и выполненных задач (по отдельности)
+3. Возможность редактирования и удаления задач.
 
-Currently, two official plugins are available:
+## Общая организация проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Корневой компонент App.tsx возвращает компонент для ввода новой задачи - NewTasksForm.tsx (header),\
+компонент содержащий массив todo задач - TodoList (main) и компонент фильтрующий задачи - \
+Footer (footer).
 
-## Expanding the ESLint configuration
+## Store
+Реализованы как глобальный store (redux Toolkit) для хранения всех todo задач и \
+совершения операций с ними (добавление новой, редактирования, удаления, изменения статуса,\
+удаления выпоненных задач). \
+Так и локальный state (useState) для фильтрации общего массива todo задач по фильтрам\
+ - active, completed, all. Так же, сохранения вводимых данных в form. В Footer сохранение\
+ статуса задач.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ ## Test
 
-- Configure the top-level `parserOptions` property like this:
+ Реализовано тестирование NewTasksForm по 3 тестам:
+ - наличие заголовка в компоненте,
+ - имитация действия пользователя по вводу данных,
+ - вывод сообщения об ошибке при вводе пустого todo
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+ ## Конфигурация
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ Использовано eslint, babel, husky, lint-staged, prettier
+
+ ## Стек
+
+ React, React Hooks, Redux, Redux Toolkit, TypeScript, Jest, React Testing Library
